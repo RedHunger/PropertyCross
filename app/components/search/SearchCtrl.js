@@ -1,9 +1,20 @@
 var angular = require("angular");
 var app = angular.module('app');
-require("angular-ui-router");
-app.component('searchcomp', {
-    controller: SearchCtrl,
-    controllerAs: 'search',
-    templateUrl: './src/components/search/search.html'
+
+app.component( "searchcomp", {
+    controller: function SearchCtrl () {
+        this.greeting = 'Hello,';
+        this.go = function () {
+            window.alert("OK.GOOOOO!");
+        }
+    },
+    templateUrl: './components/search/search.html'
 });
+
+
+
+
+
+
+
 

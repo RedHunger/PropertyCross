@@ -45,27 +45,20 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var angular = __webpack_require__(1);
-	__webpack_require__(3);
-	__webpack_require__(4);
 	var app = angular.module('app',['ui.router']);
 	var angularUiRouter = __webpack_require__(3);
 
+	__webpack_require__(3);
+	__webpack_require__(4);
 	__webpack_require__(13);
-	app.controller('SearchCtrl', ['$scope', function($scope,$http) {
-	    var url="http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=" + page + "&place_name=";
-	    $http.get(url)
-	        .then(function(response) {
-	            $scope.dataApi = response.data.records;
-	        });
-	    $scope.greeting = 'Hello,';
-	}]);
+
 
 
 	app.config(function ($stateProvider, $urlRouterProvider) {
 	    $stateProvider
 	        .state('search', {
 	            url: "/search",
-	            templateUrl: './components/search/search.html'
+	            templateUrl: './components/search/state-search.html'
 	        })
 
 	        .state('new', {
@@ -37982,12 +37975,23 @@
 
 	var angular = __webpack_require__(1);
 	var app = angular.module('app');
-	__webpack_require__(3);
-	app.component('searchcomp', {
-	    controller: SearchCtrl,
-	    controllerAs: 'search',
-	    templateUrl: './src/components/search/search.html'
+
+	app.component( "searchcomp", {
+	    controller: function SearchCtrl () {
+	        this.greeting = 'Hello,';
+	        this.go = function () {
+	            window.alert("OK.GOOOOO!");
+	        }
+	    },
+	    templateUrl: './components/search/search.html'
 	});
+
+
+
+
+
+
+
 
 
 

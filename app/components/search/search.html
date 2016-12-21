@@ -1,8 +1,7 @@
-<div class="container" ng-controller='SearchCtrl'>
+<div class="container">
     <div class="wrapper">
         <div class="header">
-            <h3>{{greeting}} PropertyCross </h3>
-            {{dataApi}}
+            <h3>{{$ctrl.greeting}} PropertyCross </h3>
             <button class="fav-button btn btn-default btn-sm">Faves</button>
         </div>
     </div>
@@ -14,7 +13,7 @@
         <form ng-submit="" class="">
             <a ui-sref="about" ui-sref-active="active" >About</a>
             <input type="text" placeholder="newcastle"  class="form-control location-inpt"/>
-            <button type="submit" class="btn btn-default btn-sm">Go</button>
+            <button ng-click="$ctrl.go()" type="button" class="btn btn-default btn-sm">Go</button>
             <button class="btn btn-default btn-sm">My location</button>
         </form>
     </div>
