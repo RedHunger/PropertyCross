@@ -11,19 +11,10 @@
             Use the form below to search for houses to buy. You can search by place-name, postcode, or clock 'My location', to search in your current location
         </p>
         <form ng-submit="" class="">
-            <a ui-sref="about" ui-sref-active="active" >About</a>
-            <input type="text" placeholder="newcastle"  class="form-control location-inpt"/>
-            <button ng-click="$ctrl.go()" type="button" class="btn btn-default btn-sm">Go</button>
+            <input type="text" placeholder="newcastle" ng-model="location" class="form-control location-input"/>
+            <button ng-click="$ctrl.goSearch(location)" type="button" class="btn btn-default btn-sm">Go</button>
             <button class="btn btn-default btn-sm">My location</button>
         </form>
     </div>
-    <div class="search-wrapper">
-        <p>Recent searches:</p>
-        <ul class="search-result list-unstyled">
-            <li>Search #1</li>
-            <li>Search #2</li>
-            <li>Search #3</li>
-        </ul>
-    </div>
-
+    <div ui-view="resultView"></div>
 </div>
