@@ -1,27 +1,13 @@
 <div class="list-wrapper">
     <div class="container">
-        <p class="text-center"> 1 of 10 matches</p>
-        <button class="back-button btn btn-default btn-sm"> Back </button>
+        <p class="text-center"> {{$ctrl.newList.length}} of {{$ctrl.newList.length}}</p>
+        <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
         <div>
-            <div class="element" >
-                <img alt=""/>
+            <div class="element"  ng-repeat="house in $ctrl.newList">
+                <img src="{{house.img_url}}" />
                 <div class="info">
-                    <p class="price">{{$ctrl.info}}</p>
-                    <p class="details">Texttexttext</p>
-                </div>
-            </div>
-            <div class="element" >
-                <img alt=""/>
-                <div class="info">
-                    <p class="price">15.00</p>
-                    <p class="details">Texttexttext</p>
-                </div>
-            </div>
-            <div class="element" >
-                <img alt=""/>
-                <div class="info">
-                    <p class="price">15.00</p>
-                    <p class="details">Texttexttext</p>
+                    <p class="price">{{house.price}}</p>
+                    <p class="details">{{house.summary}}</p>
                 </div>
             </div>
         </div>

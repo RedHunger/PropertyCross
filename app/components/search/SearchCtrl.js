@@ -9,10 +9,9 @@ app.component( "searchcomp", {
             searchService.apiget();
         };
         this.goSearch = function(loc){
-            console.log(loc);
             if (loc != undefined && loc != ''){
                 searchService.apiget(loc);
-                $state.go('list');
+                $state.go('list', {searchQuery: loc});
             }else{
                 $state.go('search.error');
             }
