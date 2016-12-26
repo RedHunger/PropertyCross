@@ -18,6 +18,8 @@ function searchService($http) {
                            title          : item.title,
                            price          : item.price_formatted,
                            img_url        : item.img_url,
+                           bed_number     : item.bedroom_number,
+                           bath_number    : item.bathroom_number,
                            summary        : item.summary
                        }
                     });

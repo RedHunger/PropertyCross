@@ -3,7 +3,7 @@
         <p class="text-center"> {{$ctrl.newList.length}} of {{$ctrl.newList.length}}</p>
         <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
         <div>
-            <div class="element"  ng-repeat="house in $ctrl.newList">
+            <div class="element"  ng-repeat="house in $ctrl.newList | limitTo: 5" ng-click="$ctrl.openDetail(house)">
                 <img src="{{house.img_url}}" />
                 <div class="info">
                     <p class="price">{{house.price}}</p>

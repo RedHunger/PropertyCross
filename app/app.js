@@ -9,6 +9,7 @@ require("./style.css");
 require('./service/search.js');
 require('./components/search/SearchCtrl.js');
 require('./components/list/ListCtrl.js');
+require('./components/object/ObjectCtrl.js');
 
 
 
@@ -21,11 +22,6 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
             templateUrl: './components/search/state-search.html'
         })
 
-        .state('new', {
-            url: "/new",
-            template: '<h3>New Page</h3>'
-        })
-
         .state('search.error', {
             url: "/error",
             views : {
@@ -33,7 +29,7 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
                     templateUrl: './components/search/search-error.html'
                 }
 
-            },
+            }
 
         })
 
@@ -42,6 +38,14 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
             templateUrl: './components/list/state-list.html',
             params: {
                 searchQuery: null,
+            }
+        })
+
+        .state('detail', {
+            url: "/detail",
+            templateUrl: './components/object/state-object.html',
+            params: {
+                item: null,
             }
         });
 

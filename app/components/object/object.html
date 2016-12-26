@@ -1,0 +1,23 @@
+<div class="detail-wrapper">
+    <div class="container">
+        <div class="detail-header">
+            <h3>Property Details {{$ctrl.message}}</h3>
+            <button class="fav-button btn btn-default btn-sm">+</button>
+        </div>
+        <h3></h3>
+        <h4></h4>
+        <div class="col-lg-6 col-sm-12">
+            <img src="{{$ctrl.item.img_url}}" alt=""/>
+        </div>
+        <div class="col-lg-6 col-sm-12" ng-if="$ctrl.item.bed_number && $ctrl.item.bath_number != 'undefined'">
+            <p> {{$ctrl.item.bed_number}} bed, {{$ctrl.item.bath_number}} bathrooms</p>
+            <p> {{$ctrl.item.summary}}</p>
+        </div>
+
+        <div class="col-lg-12">
+            <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
+        </div>
+
+    </div>
+</div>
+
