@@ -6,12 +6,12 @@ app.component( "searchcomp", {
     controller: ["searchService","$state",function SearchCtrl (searchService,$state) {
         this.greeting = 'Hello,';
         this.go = function () {
-            searchService.getapi();
+            searchService.apiget();
         };
-        this.goSearch = function(location){
-            console.log(location);
-            if (location != undefined && location != ''){
-                searchService.getapi(location);
+        this.goSearch = function(loc){
+            console.log(loc);
+            if (loc != undefined && loc != ''){
+                searchService.apiget(loc);
                 $state.go('list');
             }else{
                 $state.go('search.error');

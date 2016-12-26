@@ -7,6 +7,7 @@ require("angular-ui-router");
 require("bootstrap/dist/css/bootstrap.css");
 require('./service/search.js');
 require('./components/search/SearchCtrl.js');
+require('./components/list/ListCtrl.js');
 
 
 
@@ -37,7 +38,7 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
 
         .state('list', {
             url: "/list",
-            template: '<h3>This is the LIST state</h3>'
+            templateUrl: './components/list/state-list.html'
         });
 
     $urlRouterProvider.otherwise('/search');
