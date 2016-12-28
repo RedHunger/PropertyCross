@@ -9,7 +9,7 @@ app.component( "searchcomp", {
         };
         this.goSearch = function(loc){
             if (loc != undefined && loc != ''){
-                $state.go('list', {searchQuery: loc});
+                $state.go('list', {searchQuery: loc,page: 1});
             }else{
                 $state.go('search.error');
             }

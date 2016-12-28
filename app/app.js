@@ -46,6 +46,7 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
             templateUrl: './components/list/state-list.html',
             params: {
                 searchQuery: null,
+                page: null,
             }
         })
 

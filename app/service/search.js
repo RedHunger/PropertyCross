@@ -15,11 +15,11 @@ function searchService($http) {
         return favoriteList;
     }
 
-    function apiget (town) {
+    function apiget (town,page) {
         var dataApi = {};
         var newList = {};
         var success = false;
-        var url= "http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name="+ town ;
+        var url= "http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page="+ page + "&place_name="+ town ;
         return $http.get(url).
                 then(function(response) {
                     success = true;
