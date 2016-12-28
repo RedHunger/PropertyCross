@@ -6,6 +6,11 @@ app.component( "objectcomp", {
         this.message = 'Detail Page';
         this.item = $stateParams.item;
 
+        this.addToFavorite = function(item){
+            var isAdd = searchService.addFavList(item);
+        }
+
+
     }],
     templateUrl: './components/object/object.html'
 });

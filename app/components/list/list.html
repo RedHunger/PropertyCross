@@ -1,17 +1,20 @@
 <div class="list-wrapper">
     <div class="container">
-        <p class="text-center"> {{$ctrl.newList.length}} of {{$ctrl.newList.length}}</p>
+        <p class="text-center"> {{$ctrl.result.length}} of {{$ctrl.result.length}}</p>
         <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
         <div>
-            <div class="element"  ng-repeat="house in $ctrl.newList | limitTo: 5" ng-click="$ctrl.openDetail(house)">
+            <div class="element"  ng-repeat="house in $ctrl.result.slice(0,5)" ng-click="$ctrl.openDetail(house)">
                 <img src="{{house.img_url}}" />
                 <div class="info">
                     <p class="price">{{house.price}}</p>
                     <p class="details">{{house.summary}}</p>
                 </div>
             </div>
+            <ul uib-pagination direction-links="false" total-items="$ctrl.totalItems" ng-model="$ctrl.currentPage"  ></ul>
         </div>
     </div>
 </div>
 
-<div class="preloader"></div>
+<div class="loader" ng-hide="$ctrl.success"></div>
+
+

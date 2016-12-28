@@ -1,0 +1,18 @@
+<div class="list-wrapper">
+    <div class="container">
+        <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
+        <div>
+            <div class="element" ng-repeat="house in $ctrl.favList">
+                <img ng-src="{{house.img_url}}" alt=""/>
+                <div class="info">
+                    <p class="price">  {{ house.price}}</p>
+                    <p class="details">  {{ house.title}}</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <!--<button class="btn btn-default btn-page" ng-repeat="page in fav.pages" ng-disabled="fav.onPage(page)" ng-click="fav.goPage(page)"> {{page}} </button>-->
+            </div>
+        </div>
+    </div>
+</div>
