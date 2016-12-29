@@ -9,11 +9,22 @@ app.component( "searchcomp", {
         };
         this.goSearch = function(loc){
             if (loc != undefined && loc != ''){
-                $state.go('list', {searchQuery: loc,page: 1});
+                $state.go('list', {searchQuery: loc, page: 1});
             }else{
                 $state.go('search.error');
             }
 
+        };
+
+        this.myLocation = function () {
+            debugger;
+            // searchService.getMyLocation()
+            //     .then(function(result) {
+            //         console.log(result);
+            //     }, function(err) {
+            //         console.log(err);
+            //         $state.go('search.error');
+            //     });
         };
 
         this.showFavorite = function(){

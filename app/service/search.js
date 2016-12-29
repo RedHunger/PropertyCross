@@ -2,26 +2,30 @@ var angular = require('angular');
 var app = angular.module('app');
 var _ = require('lodash');
 
-app.service('searchService',["$http", "$state" , searchService]);
+app.factory('searchService',["$http", "$state" , searchService]);
 
 function searchService($http) {
     var that = this;
-    var favoriteList = [];
+    that.favoriteList = [];
 
     function getFavouriteList(){
-        favoriteList = JSON.parse(localStorage.getItem("favoriteList"));
-        if(favoriteList == null)
-            favoriteList = [];
-        return favoriteList;
+        that.favoriteList = JSON.parse(localStorage.getItem("favoriteList"));
+        if(that.favoriteList == null)
+            that.favoriteList = [];
+        return  that.favoriteList;
+
     }
 
     function apiget (town,page) {
         var dataApi = {};
         var newList = {};
         var success = false;
+        var total_pages= {};
+        var total_results = {};
         var url= "http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page="+ page + "&place_name="+ town ;
         return $http.get(url).
                 then(function(response) {
+                console.log(response);
                     success = true;
                     dataApi = response.data.response.listings;
                     newList = _.map(dataApi, function (item) {
@@ -34,15 +38,13 @@ function searchService($http) {
                            summary        : item.summary
                        }
                     });
-                    // localStorage.setItem('title',JSON.stringify(newList));
                 localStorage.setItem("resultApi", JSON.stringify(newList));
                 localStorage.setItem("success",success);
             return {
-                // newList: newList,
-                // success: success,
                 localStorage: localStorage,
-
-
+                total_pages: response.data.response.total_pages,
+                total_results: response.data.response.total_results,
+                location: response.data.request.location
             } ;
         });
 
@@ -50,16 +52,49 @@ function searchService($http) {
 
     }
 
+    function getMyLocation(){
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        function success(pos) {
+            var crd = pos.coords;
+            var latitude = pos.coords.latitude;
+            var longitude = pos.coords.longitude;
+            console.log(pos);
+            return {
+                latitude: latitude,
+                longitude: longitude,
+
+            };
+
+        }
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        return navigator.geolocation.getCurrentPosition(success, error, options);
+    }
+
     function addFavList (item){
-        favoriteList.push(item);
-        localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
-        return true;
+        debugger;
+        if( !(_.find(that.favoriteList, item)) ) {
+            that.favoriteList.push(item);
+            localStorage.setItem("favoriteList", JSON.stringify(that.favoriteList));
+            return true;
+        }
+
+        return false
     }
 
    return {
        apiget: apiget,
        addFavList: addFavList,
        getFavouriteList: getFavouriteList,
+       getMyLocation: getMyLocation,
    }
     
     

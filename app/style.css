@@ -4,6 +4,9 @@
 .element{
     border: 1px solid lightgrey;
 }
+.element > img{
+    margin : 10px;
+}
 
 .loader {
     margin: auto;

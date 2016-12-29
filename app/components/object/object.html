@@ -2,7 +2,7 @@
     <div class="container">
         <div class="detail-header">
             <h3>Property Details {{$ctrl.message}}</h3>
-            <button class="fav-button btn btn-default btn-sm" ng-click="$ctrl.addToFavorite($ctrl.item)">Add favorite</button>
+            <button class="fav-button btn btn-default btn-sm" ng-disabled="!$ctrl.isClick" ng-click="$ctrl.addToFavorite($ctrl.item)">Add favorite</button>
         </div>
         <h3></h3>
         <h4></h4>

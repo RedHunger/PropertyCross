@@ -13,7 +13,7 @@
         <form ng-submit="" class="">
             <input type="text" placeholder="newcastle" ng-model="loc" class="form-control location-input"/>
             <button ng-click="$ctrl.goSearch(loc)" type="button" class="btn btn-default btn-sm">Go</button>
-            <button class="btn btn-default btn-sm">My location</button>
+            <button class="btn btn-default btn-sm" ng-click="$ctrl.myLocation()">My location</button>
         </form>
     </div>
     <div ui-view="resultView"></div>
