@@ -4,6 +4,11 @@ var app = angular.module('app');
 
 app.component( "searchcomp", {
     controller: ["searchService","$state",function SearchCtrl (searchService,$state) {
+        var that = this;
+
+        this.locations = {};
+
+
         this.go = function () {
             searchService.apiget();
         };
@@ -17,14 +22,22 @@ app.component( "searchcomp", {
         };
 
         this.myLocation = function () {
-            debugger;
-            // searchService.getMyLocation()
-            //     .then(function(result) {
-            //         console.log(result);
-            //     }, function(err) {
-            //         console.log(err);
-            //         $state.go('search.error');
-            //     });
+            $state.go('search.location');
+            searchService.getMyLocation()
+                .then(function(result) {
+                    searchService.getMyLocationList(result.latitude, result.longitude).
+                        then(function (response){
+                        that.locations = response.locationList;
+                    });
+                    window.alert('YES');
+                });
+        };
+
+        that.searchFromList = function(item){
+            $state.go('list',{
+                searchQuery: item,
+                page : 1
+            });
         };
 
         this.showFavorite = function(){

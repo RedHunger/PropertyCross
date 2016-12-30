@@ -6,7 +6,9 @@ app.factory('searchService',["$http", "$state" , searchService]);
 
 function searchService($http) {
     var that = this;
+    var locationList = [];
     that.favoriteList = [];
+
 
     function getFavouriteList(){
         that.favoriteList = JSON.parse(localStorage.getItem("favoriteList"));
@@ -52,31 +54,68 @@ function searchService($http) {
 
     }
 
-    function getMyLocation(){
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
+    function getMyLocationList(latitude, longitude) {
+        var url = 'http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&centre_point=' + latitude + ',' + longitude;
 
-        function success(pos) {
-            var crd = pos.coords;
-            var latitude = pos.coords.latitude;
-            var longitude = pos.coords.longitude;
-            console.log(pos);
+        return $http({
+            method: 'GET',
+            url: url
+        }).then(function (response) {
+            var list = response.data.response.locations;
+
+            that.locationList = _.map(list, function(item){
+                return {
+                    title      : item.long_title,
+                    place_name : item.place_name
+                }
+            });
+
             return {
-                latitude: latitude,
-                longitude: longitude,
+                locationList : that.locationList
+            }
 
+
+        })
+
+    }
+
+
+    function getMyLocation(){
+
+        return new Promise( function(resolve, reject) {
+            debugger;
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
             };
 
-        }
+            function success(pos) {
+                var crd = pos.coords;
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
 
-        function error(err) {
-            console.warn('ERROR(' + err.code + '): ' + err.message);
-        }
+                console.log("True lat:" + latitude);
+                console.log("True long:" + longitude);
+                latitude  = 53.796760;
+                longitude = -1.542109;
+                console.log("Generate lat:" + latitude);
+                console.log("Generate long:" + longitude);
 
-        return navigator.geolocation.getCurrentPosition(success, error, options);
+                resolve({
+                    latitude: latitude,
+                    longitude: longitude,
+
+                });
+
+            }
+
+            function error(err) {
+                reject(Error('ERROR(' + err.code + '): ' + err.message));
+            }
+
+             navigator.geolocation.getCurrentPosition(success, error, options);
+        });
     }
 
     function addFavList (item){
@@ -94,6 +133,7 @@ function searchService($http) {
        apiget: apiget,
        addFavList: addFavList,
        getFavouriteList: getFavouriteList,
+       getMyLocationList: getMyLocationList,
        getMyLocation: getMyLocation,
    }
     

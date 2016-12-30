@@ -36,6 +36,15 @@ app.config(function ($stateProvider,$qProvider,$urlRouterProvider) {
 
         })
 
+        .state('search.location', {
+            url: '/location',
+            views: {
+                'resultView': {
+                    templateUrl: './components/search/search-location.html'
+                }
+            }
+        })
+
         .state('favorite', {
             url: "/favorite",
             templateUrl: './components/favorite/state-favorite.html',

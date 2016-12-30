@@ -1,0 +1,8 @@
+<div class="search-wrapper">
+    <p>Please select a location state:</p>
+    <ul class="search-result list-unstyled" >
+        <li ng-repeat="location in $ctrl.locations" ng-click="$ctrl.searchFromList(location.place_name)">
+            {{location.title}}
+        </li>
+    </ul>
+</div>
