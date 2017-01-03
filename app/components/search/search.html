@@ -16,5 +16,15 @@
             <button class="btn btn-default btn-sm" ng-click="$ctrl.myLocation()">My location</button>
         </form>
     </div>
+
+    <div class="search-wrapper">
+        <p>Recent searches:</p>
+        <ul class="search-result list-unstyled">
+            <li ng-repeat="item in $ctrl.recentSearchList track by $index" ng-click="$ctrl.searchFromRecentList(item)">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+
     <div ui-view="resultView"></div>
 </div>

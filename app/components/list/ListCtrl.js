@@ -10,7 +10,6 @@ app.component("listcomp", {
             that.resultLength = 20;
             that.total_pages = 1;
             that.maxSize = 5;
-            debugger;
 
             this.changePage = function (numberPage) {
                 that.currentPage = numberPage;

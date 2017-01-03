@@ -1,11 +1,15 @@
 .list-wrapper{
     text-align: center;
 }
-.element{
+.element , .search-result{
     border: 1px solid lightgrey;
 }
 .element > img{
     margin : 10px;
+}
+
+.search-wrapper li{
+    cursor: pointer;
 }
 
 .loader {
@@ -28,3 +32,4 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+

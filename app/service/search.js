@@ -83,7 +83,6 @@ function searchService($http) {
     function getMyLocation(){
 
         return new Promise( function(resolve, reject) {
-            debugger;
             var options = {
                 enableHighAccuracy: true,
                 timeout: 5000,
@@ -119,7 +118,6 @@ function searchService($http) {
     }
 
     function addFavList (item){
-        debugger;
         if( !(_.find(that.favoriteList, item)) ) {
             that.favoriteList.push(item);
             localStorage.setItem("favoriteList", JSON.stringify(that.favoriteList));

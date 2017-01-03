@@ -3,22 +3,28 @@ var app = angular.module('app');
 
 
 app.component( "searchcomp", {
-    controller: ["searchService","$state",function SearchCtrl (searchService,$state) {
+    controller: ["searchService","recentService","$state",function SearchCtrl (searchService,recentService,$state) {
         var that = this;
-
         this.locations = {};
-
+        this.recentSearchList = recentService.getRecentSearch();
 
         this.go = function () {
             searchService.apiget();
         };
+
         this.goSearch = function(loc){
+            debugger;
+            recentService.addRecentSearch(loc);
             if (loc != undefined && loc != ''){
                 $state.go('list', {searchQuery: loc, page: 1});
             }else{
                 $state.go('search.error');
             }
 
+        };
+
+        this.searchFromRecentList = function(loc){
+            $state.go('list',{searchQuery: loc, page : 1});
         };
 
         this.myLocation = function () {
@@ -33,7 +39,7 @@ app.component( "searchcomp", {
                 });
         };
 
-        that.searchFromList = function(item){
+        this.searchFromList = function(item){
             $state.go('list',{
                 searchQuery: item,
                 page : 1

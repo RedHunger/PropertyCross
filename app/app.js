@@ -9,6 +9,7 @@ require("bootstrap/dist/css/bootstrap.css");
 require("./style.css");
 require('./components/favorite/FavCtrl.js');
 require('./service/search.js');
+require('./service/recentSearch.js');
 require('./components/search/SearchCtrl.js');
 require('./components/list/ListCtrl.js');
 require('./components/object/ObjectCtrl.js');
