@@ -13,8 +13,7 @@ app.component( "searchcomp", {
         };
 
         this.goSearch = function(loc){
-            debugger;
-            recentService.addRecentSearch(loc);
+            //recentService.addRecentSearch(loc);
             if (loc != undefined && loc != ''){
                 $state.go('list', {searchQuery: loc, page: 1});
             }else{

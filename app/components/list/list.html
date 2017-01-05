@@ -1,6 +1,6 @@
 <div class="list-wrapper" ng-show="$ctrl.success">
     <div class="container">
-        <p class="text-center"> {{$ctrl.currentPage}} of {{$ctrl.total_pages}}</p>
+        <p class="text-center"> {{$ctrl.currentPage}} of {{$ctrl.totalPages}}</p>
         <button class="back-button btn btn-default btn-sm" onclick="history.back()"> Back </button>
         <div>
             <div class="element"  ng-repeat="house in $ctrl.result" ng-click="$ctrl.openDetail(house)">
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <!--<ul uib-pagination direction-links="false" total-items="$ctrl.totalItems" ng-model="$ctrl.currentPage" ng-change="$ctrl.changePage($ctrl.currentPage)" ></ul>-->
-            <ul uib-pagination total-items="$ctrl.totalItems" max-size="$ctrl.maxSize" ng-model="$ctrl.currentPage"  class="pagination-sm" boundary-link-numbers="true" rotate="false" ng-change="$ctrl.changePage($ctrl.currentPage)"></ul>
+            <ul uib-pagination total-items="$ctrl.totalItems" items-per-page="$ctrl.itemsPerPage" max-size="$ctrl.maxSize" ng-model="$ctrl.currentPage"  class="pagination-sm" boundary-link-numbers="true" rotate="false" ng-change="$ctrl.changePage($ctrl.query,$ctrl.currentPage)"></ul>
         </div>
     </div>
 </div>
